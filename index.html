@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>Happy Anniversary 🌹</title>
+
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --paper:#fbf7ef;
+  --ink:#5a2a34;
+  --pink:#f4b6c2;
+}
+
+html{
+  scroll-padding-top:env(safe-area-inset-top,0px);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:#f3ecdc;
+  color:var(--ink);
+  font-family:Georgia,'Times New Roman',serif;
+  overflow-x:hidden;
+}
+
+/* INTRO */
+#intro{
+  position:fixed;
+  inset:0;
+  background:#f3ecdc;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  z-index:10;
+  transition:opacity 1.2s,transform 1.4s;
+  cursor:pointer;
+  text-align:center;
+}
+
+#intro.go{
+  opacity:0;
+  transform:scale(3);
+  pointer-events:none;
+}
+
+#bouquet{
+  position:relative;
+  width:min(80vw,340px);
+  height:min(80vw,340px);
+  animation:sway 5s ease-in-out infinite;
+}
+
+#bouquet span{
+  position:absolute;
+  line-height:1;
+  transform:translate(-50%,-50%);
+  filter:drop-shadow(0 3px 3px #0003);
+}
+
+@keyframes sway{
+  50%{
+    transform:rotate(3deg) scale(1.03);
+  }
+}
+
+#intro h1{
+  font-weight:400;
+  font-size:1.6rem;
+  margin:1.5rem 1rem .3rem;
+}
+
+#intro p{
+  margin:0;
+  opacity:.7;
+  font-style:italic;
+}
+
+/* MAIN SEA */
+#sea{
+  min-height:100vh;
+  padding:1.2rem 1rem 4rem;
+  background:linear-gradient(
+    160deg,
+    #bfe9e6,
+    #f6dbe4 55%,
+    #cfeaf3
+  );
+  position:relative;
+  overflow:hidden;
+}
+
+/* BUBBLES */
+.b{
+  position:absolute;
+  bottom:-40px;
+  border-radius:50%;
+  border:1px solid #fff9;
+  background:radial-gradient(
+    circle at 30% 30%,
+    #fff8,
+    #fff1
+  );
+  animation:rise linear infinite;
+}
+
+@keyframes rise{
+  to{
+    transform:translateY(-120vh);
+  }
+}
+
+/* DECORATIONS */
+.deco{
+  position:absolute;
+  font-size:2.6rem;
+  opacity:.9;
+  animation:bob 6s ease-in-out infinite;
+}
+
+@keyframes bob{
+  50%{
+    transform:translateY(-10px) rotate(6deg);
+  }
+}
+
+/* WRAPPER */
+.wrap{
+  position:relative;
+  max-width:440px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:1.6rem;
+}
+
+h2{
+  text-align:center;
+  font-weight:400;
+  font-size:1.5rem;
+  margin:.5rem 0 0;
+}
+
+.sub{
+  text-align:center;
+  font-style:italic;
+  opacity:.7;
+  margin-top:-1rem;
+}
+
+.card{
+  background:var(--paper);
+  border-radius:16px;
+  padding:1rem;
+  box-shadow:0 8px 20px #0002;
+}
+
+/* ENVELOPE */
+.env{
+  position:relative;
+  height:190px;
+  background:var(--pink);
+  border-radius:8px;
+  cursor:pointer;
+  box-shadow:0 8px 20px #0002;
+  overflow:hidden;
+  transition:height .8s;
+}
+
+.env.open{
+  height:400px;
+  overflow:visible;
+}
+
+.flap{
+  position:absolute;
+  inset:0 0 auto 0;
+  height:95px;
+  background:#eaa0b0;
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  transition:transform .6s;
+  transform-origin:top;
+  z-index:3;
+}
+
+.env.open .flap{
+  transform:rotateX(180deg);
+  z-index:0;
+}
+
+.letter{
+  position:absolute;
+  left:8%;
+  right:8%;
+  bottom:10px;
+  height:70%;
+  background:var(--paper);
+  border-radius:6px;
+  padding:1rem;
+  font-size:.95rem;
+  line-height:1.5;
+  transition:all .8s .3s;
+  overflow:auto;
+  transform:translateY(60%);
+  opacity:0;
+  z-index:2;
+}
+
+.env.open .letter{
+  transform:none;
+  height:92%;
+  opacity:1;
+  bottom:auto;
+  top:4%;
+}
+
+.env .hint{
+  position:absolute;
+  bottom:14px;
+  width:100%;
+  text-align:center;
+  font-style:italic;
+  z-index:4;
+  color:#fff;
+}
+
+.env.open .hint{
+  display:none;
+}
+
+/* MUSIC PLAYER */
+.player{
+  display:flex;
+  gap:.8rem;
+  align-items:center;
+  background:#1d1d1d;
+  color:#fff;
+  border-radius:14px;
+  padding:.6rem .8rem;
+  font-family:system-ui,sans-serif;
+}
+
+.art{
+  width:46px;
+  height:46px;
+  border-radius:8px;
+  background:linear-gradient(135deg,#e63946,#6a0dad);
+  display:grid;
+  place-items:center;
+  font-size:1.4rem;
+}
+
+.player .t{
+  flex:1;
+  min-width:0;
+}
+
+.player b{
+  display:block;
+  font-size:.95rem;
+}
+
+.player small{
+  opacity:.6;
+}
+
+.pp{
+  background:#fff;
+  color:#000;
+  border:0;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  font-size:1rem;
+  cursor:pointer;
+}
+
+.bars{
+  display:flex;
+  gap:2px;
+  height:14px;
+  align-items:flex-end;
+  margin-top:4px;
+}
+
+.bars i{
+  width:3px;
+  background:#f4b6c2;
+  height:4px;
+}
+
+.playing .bars i{
+  animation:eq .8s ease-in-out infinite alternate;
+}
+
+.bars i:nth-child(2n){
+  animation-delay:.2s;
+}
+
+.bars i:nth-child(3n){
+  animation-delay:.4s;
+}
+
+@keyframes eq{
+  to{
+    height:14px;
+  }
+}
+
+/* POLAROIDS */
+.pol{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:1rem;
+}
+
+.p{
+  background:#fff;
+  padding:8px 8px 30px;
+  box-shadow:0 6px 14px #0003;
+  width:45%;
+  transform:rotate(var(--r));
+  text-align:center;
+  font-size:.8rem;
+  position:relative;
+  overflow:hidden;
+}
+
+.p .ph{
+  aspect-ratio:1;
+  display:grid;
+  place-items:center;
+  font-size:2rem;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
+.p em{
+  position:absolute;
+  bottom:6px;
+  left:0;
+  right:0;
+}
+
+/* MAP */
+.map{
+  position:relative;
+  height:170px;
+  border-radius:10px;
+  background:linear-gradient(#cfe3d0,#b9d3c1);
+  overflow:hidden;
+}
+
+.map:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    repeating-linear-gradient(
+      35deg,
+      #fff5 0 2px,
+      transparent 2px 38px
+    ),
+    repeating-linear-gradient(
+      -55deg,
+      #fff4 0 2px,
+      transparent 2px 46px
+    );
+}
+
+.pin{
+  position:absolute;
+  font-size:1.6rem;
+  cursor:pointer;
+  transform:translate(-50%,-100%);
+  border:0;
+  background:none;
+  padding:0;
+}
+
+#mm{
+  margin:.6rem 0 0;
+  font-style:italic;
+  min-height:1.4em;
+  text-align:center;
+}
+
+.foot{
+  text-align:center;
+  font-size:1.1rem;
+  opacity:.85;
+  margin-top:1rem;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- INTRO -->
+
+<div id="intro" onclick="openSea()">
+
+  <div id="bouquet"></div>
+
+  <h1>Happy Anniversary, ente vaave 💗😚</h1>
+
+  <p>tap the flowers to open</p>
+
+</div>
+
+<!-- MAIN WEBSITE -->
+
+<main id="sea">
+
+  <!-- DECORATIONS -->
+
+<span class="deco" style="top:6%;left:4%">🪼</span>
+
+<span
+ class="deco"
+ style="top:20%;right:5%;animation-delay:1s">
+🐠 </span>
+
+<span
+ class="deco"
+ style="top:52%;left:2%;animation-delay:2s">
+🐚 </span>
+
+<span
+ class="deco"
+ style="top:74%;right:4%;animation-delay:.5s">
+🐢 </span>
+
+  <div class="wrap">
+
+```
+<h2>For you 🌸</h2>
+
+<p class="sub">
+  a little world I made, just for us
+</p>
+
+
+<!-- LETTER -->
+<div
+  class="env"
+  id="env"
+  onclick="this.classList.toggle('open')">
+
+  <div class="flap"></div>
+
+  <div class="letter">
+
+    <b>Ente Vave💗,</b><br>
+
+    Happy 7 months annivesary of meeting to us💗😚.I luv
+    u sooooooooo much💗😚.Ermm i wanna show one thing uh
+    i hope u will like it uh, think this of a continue letter uh 
+    ik u didnt understood now uh😂, after reading that uh read this uh😂.
+    Thanks for loving this stupid guy😭.See inga paaru naan unmela romba addict
+    ayutan and this addiction is too beautiful uh ,i'll never get rid of this addicion🤌.And 
+    ur my comfortable person to share everything uh.And uh while ur telling uh every little and tiny things to me
+    uh u know how happy uh i become ermmmmm eppadi soldradu ,ushh i am not good at expressing my emotions uh😭.Plsss
+    dont't stop telling uh😭,nee vena paaaru uh one day we'll sit together and talk about all this things uh laughing together
+    and we'll finally tell " yes , we made it 🤌😭".I wanna tell many things uh but uh now uh i am irritating u 2nd time uh 😂
+    sorry for that😂.so finally vava luv u soo soo soo much 💗😚,mwahhhhhhhhhhhh💋💋.Oii don't overthink too much ok ah, i am all urs💋,
+    and i am not gonna stop irritating u uh😂....................................
+
+    
+    
+
+    <br><br>
+
+    
+
+   
+
+    <i>— Yours stupid guy💗</i>
+
+  </div>
+
+  <div class="hint">
+    tap to open the letter 💌
+  </div>
+
+</div>
+
+
+<!-- MUSIC -->
+<div class="player" id="pl">
+
+  <div class="art">
+    🎵
+  </div>
+
+  <div class="t">
+
+    <b>Aaradhike</b>
+
+    <small id="sm">
+      our song
+    </small>
+
+    <div class="bars">
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+    </div>
+
+  </div>
+
+  <button
+    class="pp"
+    id="ppb"
+    onclick="tog()">
+    ▶
+  </button>
+
+</div>
+
+
+<!-- PHOTOS -->
+<div class="pol" id="pol"></div>
+
+<p
+  class="sub"
+  style="margin-top:-.6rem">
+  our favorite memories 💕
+</p>
+
+
+<!-- MEMORY MAP -->
+<div class="card">
+
+  <b>Memory map 📍</b>
+
+  <div
+    class="map"
+    style="margin-top:.6rem">
+
+    <button
+      class="pin"
+      style="left:25%;top:45%"
+      onclick="mm('march 1 ✨')">
+      📍
+    </button>
+
+    <button
+      class="pin"
+      style="left:55%;top:70%"
+      onclick="mm('july 29 💗')">
+      📍
+    </button>
+
+    <button
+      class="pin"
+      style="left:78%;top:38%"
+      onclick="mm('aug 6 💗')">
+      📍
+    </button>
+    <button
+      class="pin"
+      style="left:40%;top:25%"
+      onclick="mm('april 21 💗')">
+      📍
+    </button>
+
+  </div>
+
+  <p id="mm">
+    Tap a pin to relive a memory
+  </p>
+
+</div>
+
+
+<!-- VOICE NOTE -->
+<div
+  class="card player"
+  style="background:var(--paper);color:var(--ink)">
+
+  <button
+    class="pp"
+    id="voiceBtn"
+    style="background:#5a2a34;color:#fff"
+    onclick="toggleVoice()">
+    ▶
+  </button>
+
+  <div class="t">
+    <b>Voice note 💌</b>
+    <small id="voiceStatus">from me to you</small>
+  </div>
+
+</div>
+
+
+<p class="foot">
+  Forever yours 🌹
+</p>
+```
+
+  </div>
+
+</main>
+
+<script>
+
+/* =========================
+   FLOWER INTRO
+========================= */
+
+const bq = document.getElementById('bouquet');
+
+const fl = [
+  '🌹',
+  '🌹',
+  '🌹',
+  '🌷',
+  '🌸',
+  '🌺'
+];
+
+for(let i=0;i<70;i++){
+
+  const a = Math.random()*6.283;
+  const r = Math.sqrt(Math.random())*46;
+
+  const s = document.createElement('span');
+
+  s.textContent =
+    fl[Math.floor(Math.random()*fl.length)];
+
+  s.style.left =
+    50 + Math.cos(a)*r + '%';
+
+  s.style.top =
+    50 + Math.sin(a)*r + '%';
+
+  s.style.fontSize =
+    (1.8 + Math.random()*1.6) + 'rem';
+
+  bq.appendChild(s);
+}
+
+
+/* =========================
+   OPEN WEBSITE
+========================= */
+
+function openSea(){
+
+  if(au.paused){
+    tog();
+  }
+
+  document
+    .getElementById('intro')
+    .classList.add('go');
+
+  window.scrollTo(0,0);
+}
+
+
+/* =========================
+   BUBBLES
+========================= */
+
+const sea =
+  document.getElementById('sea');
+
+for(let i=0;i<14;i++){
+
+  const b =
+    document.createElement('div');
+
+  const d =
+    10 + Math.random()*30;
+
+  b.className = 'b';
+
+  b.style.cssText = `
+    width:${d}px;
+    height:${d}px;
+    left:${Math.random()*100}%;
+    animation-duration:${8+Math.random()*10}s;
+    animation-delay:${-Math.random()*12}s;
+  `;
+
+  sea.appendChild(b);
+}
+
+
+/* =========================
+   YOUR PHOTOS
+========================= */
+
+const photos = [
+
+  {
+    file:'photo1.jpg',
+    caption:'us 💕',
+    rotate:'-5deg'
+  },
+
+  {
+    file:'photo2.jpg',
+    caption:'that night',
+    rotate:'4deg'
+  },
+
+  {
+    file:'photo3.jpg',
+    caption:'forever 💗',
+    rotate:'3deg'
+  },
+
+  {
+    file:'photo4.jpg',
+    caption:'too cute 😭',
+    rotate:'-4deg'
+  }
+
+];
+
+
+const pol =
+  document.getElementById('pol');
+
+
+photos.forEach(photo => {
+
+  const p =
+    document.createElement('div');
+
+  p.className = 'p';
+
+  p.style.setProperty(
+    '--r',
+    photo.rotate
+  );
+
+  p.innerHTML = `
+
+    <div
+      class="ph"
+      style="
+        background-image:
+        url('photos/${photo.file}');
+      ">
+    </div>
+
+    <em>${photo.caption}</em>
+
+  `;
+
+  pol.appendChild(p);
+
+});
+
+
+/* =========================
+   MUSIC
+========================= */
+
+const au =
+  new Audio('Aaradhike.mp3');
+
+au.loop = true;
+
+
+function tog(){
+
+  const pl =
+    document.getElementById('pl');
+
+  const b =
+    document.getElementById('ppb');
+
+  if(au.paused){
+
+    au.play().catch(()=>{});
+
+    pl.classList.add('playing');
+
+    b.textContent = '❚❚';
+
+  }else{
+
+    au.pause();
+
+    pl.classList.remove('playing');
+
+    b.textContent = '▶';
+
+  }
+
+}
+
+
+/* =========================
+   MEMORY MAP
+========================= */
+
+function mm(t){
+
+  document
+    .getElementById('mm')
+    .textContent = t;
+
+}
+
+
+/* =========================
+   VOICE NOTE BUTTON
+========================= */
+
+const voice = new Audio('voice.mp3');
+const voiceBtn = document.getElementById('voiceBtn');
+const voiceStatus = document.getElementById('voiceStatus');
+
+function toggleVoice(){
+
+  if(voice.paused){
+
+    voice.play().catch(error => {
+      console.log('Voice note could not play:', error);
+    });
+
+    voiceBtn.textContent = '❚❚';
+    voiceStatus.textContent = 'playing your message ❤️';
+
+  }else{
+
+    voice.pause();
+
+    voiceBtn.textContent = '▶';
+    voiceStatus.textContent = 'from me to you';
+
+  }
+
+}
+
+voice.addEventListener('ended', () => {
+
+  voiceBtn.textContent = '▶';
+  voiceStatus.textContent = 'from me to you';
+
+});
+
+</script>
+
+</body>
+</html>
